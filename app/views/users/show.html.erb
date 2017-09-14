@@ -3,7 +3,7 @@
   <aside class="col-md-offset-1 col-md-10">
     <section class="user_info">
       <h1>
-        <%= @user.name %>
+        Student <%= @user.name %>'s
       </h1>
       <table class="table table-striped table-inverse center">
         <thead>
@@ -13,18 +13,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Otto</td>
+          <% 
+            counter = []
+            counter << @user_do.count
+            counter << @user_done.count
+            i = 0
+          %>
+  
+          <% (counter.max).times do %>
+          <tr> 
+            <td><%= @user_do[i].name unless @user_do[i].nil? %></td>
+            <td><%= @user_done[i].name unless @user_done[i].nil? %></td>
           </tr>
-          <tr>
-            <td>Jacob</td>
-            <td>Thornton</td>
-          </tr>
-          <tr>
-            <td>Larry</td>
-            <td>the Bird</td>
-          </tr>
+          <% i += 1 %>
+          <% end %>
+         
+
         </tbody>
       </table>
     </section>

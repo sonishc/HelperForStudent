@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @user_do = user_status_task(0)
+    @user_done = user_status_task(1)
   end
 
   def new
@@ -22,5 +24,10 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
+  end
+
+  def user_status_task(n)
+    Task.joins(:user_tasks)\
+        .where(user_tasks: { user_id: params[:id], done: n })
   end
 end
