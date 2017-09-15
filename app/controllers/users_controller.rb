@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+
+  def index
+    @user = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @user_do = user_status_task(0)
@@ -17,6 +22,13 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def update
+  end
+
+  def edit
+    @user = User.find(params[:id])
   end
 
   private
